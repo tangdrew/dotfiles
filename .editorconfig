@@ -1,0 +1,21 @@
+# http://EditorConfig.org
+
+# This file is the top-most EditorConfig file
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+trim_trailing_whitespace = true
+end_of_line = lf
+insert_final_newline = true
+
+[*.{ex,eex,erl,rb,elm,c,css,scss,sass,toml,haml,yaml,slim,js,ts,json,jsx}]
+indent_size = 2
+
+[*.{rs,fs,cs,java,hs,cpp,py,html,erb}]
+indent_size = 4
+
+[*.{go}]
+indent_size = 4
+indent_style = tab
