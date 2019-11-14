@@ -18,17 +18,18 @@ alias g="git"
 alias gc="git commit"
 alias gs='git status'
 alias gst='git stash'
-alias gco='git co'
+alias gco='git checkout'
 alias ga='git add -A'
 alias gm='git merge'
 alias gr='git rebase'
-alias gl='git l'
-alias co='git co'
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gf='git fetch'
 alias gd='git diff'
-alias gb='git b'
+alias gb='git branch'
 alias gp='git push'
 alias gpl='git pull'
+alias grecent='git for-each-ref --sort=committerdate refs/heads/ --format="%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))"'
+
 
 # kubectl
 alias k="kubectl"
