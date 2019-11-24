@@ -28,6 +28,7 @@ zplug "rupa/z", \
 
 zplug mafredri/zsh-async, from:github
 zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -50,3 +51,7 @@ autoload -U colors; colors
 
 # completion
 autoload -U compinit; compinit
+
+# Source asdf
+. /usr/local/opt/asdf/asdf.sh
+
