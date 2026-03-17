@@ -1,6 +1,3 @@
-# dotfile config
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-
 # unix
 alias ..='cd ..'
 alias ...='../..'
@@ -29,7 +26,6 @@ alias gb='git branch'
 alias gp='git push'
 alias gpl='git pull'
 alias grecent='git for-each-ref --sort=committerdate refs/heads/ --format="%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))"'
-
 
 # kubectl
 alias k="kubectl"
