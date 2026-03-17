@@ -32,6 +32,7 @@ Create git commits for changes made during this session.
    - Show the result with `git log --oneline -n [number]`
 
 ## Rules
+- **Never add co-author information or Claude attribution** — no "Co-Authored-By" lines, no "Generated with Claude" messages. Commits should read as if the user wrote them.
 - Group related changes together
 - Keep commits focused and atomic when possible
 - Never commit files that look auto-generated, temporary, or unrelated to the work
