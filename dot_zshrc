@@ -1,0 +1,84 @@
+# 1. Environment
+(( ${+PAGER}   )) || export PAGER='less'
+(( ${+EDITOR}  )) || export EDITOR='vim'
+export PSQL_EDITOR='vim -c"setf sql"'
+export CLICOLOR=1
+
+# 2. History
+setopt appendhistory extendedglob histignoredups nonomatch prompt_subst interactivecomments noclobber
+HISTFILE=~/.zhistory
+HISTSIZE=4096
+SAVEHIST=4096
+
+# 3. ZPlug
+source ~/.zplug/init.zsh
+
+zplug "rupa/z", \
+    from:github, \
+    as:command, \
+    use:"z.sh", \
+    rename-to:z
+
+zplug mafredri/zsh-async, from:github
+zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+zplug load
+
+# 4. Aliases
+source ~/.aliases.sh
+
+# 5. Path deduplication, colors, completion
+typeset -aU path
+autoload -U colors; colors
+autoload -Uz compinit; compinit
+
+# 6. Version managers (asdf)
+[ -f "$HOME/.asdf/asdf.sh" ] && . "$HOME/.asdf/asdf.sh"
+if [ -n "$ASDF_DIR" ]; then
+    fpath=(${ASDF_DIR}/completions $fpath)
+fi
+
+# 7. Homebrew
+[ -x /opt/homebrew/bin/brew ] && export PATH="/opt/homebrew/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+
+# 8. Tool-specific setup
+# Node
+export NODE_OPTIONS=--max-old-space-size=4096
+
+# Bun
+if [ -d "$HOME/.bun" ]; then
+    [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+    export BUN_INSTALL="$HOME/.bun"
+    export PATH="$BUN_INSTALL/bin:$PATH"
+fi
+
+# pnpm
+if [ -d "$HOME/Library/pnpm" ]; then
+    export PNPM_HOME="$HOME/Library/pnpm"
+    case ":$PATH:" in
+        *":$PNPM_HOME:"*) ;;
+        *) export PATH="$PNPM_HOME:$PATH" ;;
+    esac
+fi
+
+# fzf
+command -v fzf >/dev/null 2>&1 && eval "$(fzf --zsh)"
+
+# Cargo/Rust
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+
+# Go
+command -v go >/dev/null 2>&1 && export PATH="$PATH:$(go env GOPATH)/bin"
+
+# Tailscale
+[ -x "/Applications/Tailscale.app/Contents/MacOS/Tailscale" ] && \
+    alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"

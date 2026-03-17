@@ -1,0 +1,17 @@
+#!/bin/bash
+# macOS defaults
+# Run this script to apply preferred macOS settings
+
+# Dock: auto-hide
+defaults write com.apple.dock autohide -bool true
+
+# Finder: show all file extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Keyboard: fastest repeat rate
+defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain InitialKeyRepeat -int 10
+
+# Apply changes
+killall Dock
+killall Finder
